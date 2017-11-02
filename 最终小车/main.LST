@@ -1,0 +1,206 @@
+C51 COMPILER V9.01   MAIN                                                                  10/14/2017 18:39:17 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: F:\工具软件\KEIL\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          //#include"stepmot.h"
+   3          //#include"config.h"
+   4          //#include"TimeDLY.h"
+   5          //#include"IOCfg.c"
+   6          //#include"ultradtc.h"
+   7          //#include"LCD1602.h"
+   8          //#include"linedtc.h"
+   9          //
+  10          // #include"ds1302.h"
+  11          //
+  12          //
+  13          //INT8U   linenum=0; //直道的黑线数目
+  14          //INT8U code table[]="linenum:";
+  15          //INT8U code table1[]="Runnum:";
+  16          //
+  17          // void write_a()
+  18          //{        Ds1302ReadTime();
+  19          //      LcdWriteCom(0x80+0X40+10);                                      
+  20          //   LcdWriteData('0'+TIME[1]/16);                              //分
+  21          //      LcdWriteData('0'+(TIME[1]&0x0f));       
+  22          //      LcdWriteData('-');
+  23          //      LcdWriteData('0'+TIME[0]/16);                           //秒
+  24          //      LcdWriteData('0'+(TIME[0]&0x0f));
+  25          //     
+  26          //
+  27          //}
+  28          // void write_b(INT8U date)
+  29          //{
+  30          //
+  31          //      LcdWriteCom(0x80+12);
+  32          //        LcdWriteData(0x30+date);
+  33          //}
+  34          //
+  35          //void InitIO()
+  36          //{       INT8U y;
+  37          //LAN=0;LAP=0;RBN=0;RBP=0;
+  38          //   Follow_L=1;Follow_R=1;
+  39          //   UltraDTC_TR=0;UltraDTC_RE=1;
+  40          //   Guide=0;
+  41          //   LcdInit();     //初始化LCD1602
+  42          //    Ds1302Init();               //初始化DS1302 
+  43          ////    VEE=1;
+  44          //          LcdWriteCom(0x80); 
+  45          //   for(y=0;y<8;y++)
+  46          //         {
+  47          //         LcdWriteData(table[y]);
+  48          //         }
+  49          //                LcdWriteCom(0x80+0x40);
+  50          //                for(y=0;y<7;y++)
+  51          //         {
+  52          //         LcdWriteData(table1[y]);
+  53          //         }             
+  54          //}
+  55          //void  beep()
+C51 COMPILER V9.01   MAIN                                                                  10/14/2017 18:39:17 PAGE 2   
+
+  56          //{
+  57          //   Guide=~ Guide;
+  58          //              Delay1ms(1);
+  59          //
+  60          //}
+  61          //void main()
+  62          //{
+  63          //     INT8U i,j;
+  64          //       InitIO();
+  65          //       MotRun(MSPEED);
+  66          ////     RMotRun(MSPEED);
+  67          //       TMOD = TMOD | 0x10 ;        //T1 工作在方式1（8位计数器,自动重载）
+  68          //      TH1 = 0x0FE;  //重新赋初值 定时500微秒
+  69          //    TL1 = 0x0C;
+  70          //      EA  = 1;
+  71          //      ET1 = 1;
+  72          //      TR1 = 1;
+  73          //
+  74          //
+  75          //      while(1)
+  76          //       {
+  77          //              do      //均速运行区
+  78          //               {       
+  79          //                 if(linedtc()) linenum++;
+  80          //               }
+  81          //              while(linenum<1);
+  82          //         //第一次停车
+  83          //              MotStop();
+  84          ////            RMotStop();
+  85          //                      write_a();
+  86          //              write_b(linenum);
+  87          //
+  88          //        for (j=0;j<5;j++)
+  89          //  {    for(i=0;i<100;i++)
+  90          //         { beep();
+  91          //           
+  92          //              }
+  93          //                 Delay1ms(1000);  
+  94          //  }                                    // 延时5S
+  95          //                      
+  96          //
+  97          //                      do      //快速运行区
+  98          //               {      MotRun(HSPEED);
+  99          ////            RMotRun(HSPEED);
+ 100          //                 if(linedtc()) linenum++;
+ 101          //               }
+ 102          //                while(linenum<2);
+ 103          //         //第二次停车
+ 104          //              MotStop();
+ 105          ////            RMotStop();
+ 106          //                      write_a();
+ 107          //              write_b(linenum);
+ 108          //
+ 109          //                for (j=0;j<5;j++)
+ 110          //  {    for(i=0;i<100;i++)
+ 111          //         { beep();
+ 112          //           
+ 113          //              }
+ 114          //                 Delay1ms(1000);  
+ 115          //  }                                    // 延时5S
+ 116          //
+ 117          //                      do      //慢速运行区
+C51 COMPILER V9.01   MAIN                                                                  10/14/2017 18:39:17 PAGE 3   
+
+ 118          //               {      MotRun(LSPEED);
+ 119          ////            RMotRun(LSPEED);
+ 120          //                 if(linedtc()) linenum++;
+ 121          //               }
+ 122          //                while(linenum<3);
+ 123          //         //第三次停车
+ 124          //              MotStop();
+ 125          ////            RMotStop();
+ 126          //                      write_a();
+ 127          //              write_b(linenum);
+ 128          //
+ 129          //                for (j=0;j<5;j++)
+ 130          //  {    for(i=0;i<100;i++)
+ 131          //         { beep();
+ 132          //           
+ 133          //              }
+ 134          //                 Delay1ms(1000);  
+ 135          //  }                                    // 延时5S
+ 136          //
+ 137          //                 do //进入障碍区
+ 138          //              {
+ 139          //               Ultra_DTC();
+ 140          //                      if(linedtc()) linenum++;
+ 141          //              }                                                  
+ 142          //              while(linenum<4);
+ 143          //              
+ 144          //              MotStop();
+ 145          ////            RMotStop();
+ 146          //              write_a();
+ 147          //              write_b(linenum);
+ 148          //
+ 149          //                for (j=0;j<5;j++)
+ 150          //      {        for(i=0;i<100;i++)
+ 151          //            { beep();
+ 152          //           
+ 153          //                }
+ 154          //                 Delay1ms(1000);  
+ 155          //       }      
+ 156          //       }
+ 157          //}
+ 158          //
+ 159          //
+ 160          //void Time1_IT(void) interrupt 3 
+ 161          //{     
+ 162          //              TH1 = 0x0FE;  //重新赋初值
+ 163          //        TL1 = 0x0C;   
+ 164          //      ADD++;
+ 165          //
+ 166          //}
+ 167          void main(void)
+ 168          {
+ 169   1         P3=1;
+ 170   1      
+ 171   1      
+ 172   1      
+ 173   1      
+ 174   1      
+ 175   1      
+ 176   1      }
+ 177          
+
+
+C51 COMPILER V9.01   MAIN                                                                  10/14/2017 18:39:17 PAGE 4   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      4    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

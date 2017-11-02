@@ -1,0 +1,9 @@
+"main.obj",
+"IOCfg.obj",
+"stepmot.obj",
+"timedly.obj",
+"ultradtc.obj",
+"lcd1602.obj",
+"linedtc.obj",
+"ds1302.obj" 
+TO "car" 

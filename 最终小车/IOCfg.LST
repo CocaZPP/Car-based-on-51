@@ -1,0 +1,62 @@
+C51 COMPILER V9.01   IOCFG                                                                 05/11/2017 09:53:23 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE IOCFG
+OBJECT MODULE PLACED IN IOCfg.OBJ
+COMPILER INVOKED BY: F:\工具软件\KEIL\C51\BIN\C51.EXE IOCfg.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          
+   3          /*引脚定义*/
+   4          
+   5          //步进电机引脚
+   6          //左边电机
+   7          //sbit  ENA   = P1^0;
+   8          sbit  LAN    = P2^0;
+   9          sbit  LAP    = P2^1;
+  10          
+  11          //右边电机
+  12          //sbit  ENB   = P1^3;
+  13          sbit  RBN    = P2^2;
+  14          sbit  RBP    = P2^3;
+  15          
+  16          
+  17          //寻线电路引脚
+  18          sbit  Follow_L          = P2^4;
+  19          sbit  Follow_R          = P2^7;
+  20          
+  21          //超声波障碍物检测引脚
+  22          sbit  UltraDTC_TR   = P3^6;
+  23          sbit  UltraDTC_RE   = P3^7;
+  24          
+  25          
+  26          //声光指示引脚
+  27          sbit  Guide   = P3^5;
+  28          //1602显示引脚
+  29          #define LCD1602_DATAPINS P0
+  30          sbit LCD1602_E=P1^0; //1602使能信号
+  31          sbit LCD1602_RS=P1^1;//1602数据 命令选择端
+  32          
+  33          
+  34          
+  35          //---定义ds1302使用的IO口---//
+  36          //sbit  VEE=P1^4;
+  37          //sbit DSIO=P1^5;
+  38          //sbit RST=P1^6;
+  39          //sbit SCLK=P1^7;
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

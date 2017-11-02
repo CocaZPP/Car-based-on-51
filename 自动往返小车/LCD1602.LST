@@ -1,0 +1,100 @@
+C51 COMPILER V9.01   LCD1602                                                               12/21/2016 19:08:32 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LCD1602
+OBJECT MODULE PLACED IN LCD1602.OBJ
+COMPILER INVOKED BY: G:\KEIL\C51\BIN\C51.EXE LCD1602.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1           #include "LCD1602.h"
+   2          
+   3          /*******************************************************************************
+   4          * 函 数 名         : Lcd1602_Delay1ms
+   5          * 函数功能                 : 延时函数，延时1ms
+   6          * 输    入         : c
+   7          * 输    出         : 无
+   8          * 说    名         : 该函数是在12MHZ晶振下，12分频单片机的延时。
+   9          *******************************************************************************/
+  10          
+  11          void Lcd1602_Delay1ms(uint c)   //误差 0us
+  12          {
+  13   1          uchar a,b;
+  14   1              for (; c>0; c--)
+  15   1              {
+  16   2                       for (b=199;b>0;b--)
+  17   2                       {
+  18   3                              for(a=1;a>0;a--);
+  19   3                       }      
+  20   2              }
+  21   1              
+  22   1      }
+  23          
+  24          /*******************************************************************************
+  25          * 函 数 名         : LcdWriteCom
+  26          * 函数功能                 : 向LCD写入一个字节的命令
+  27          * 输    入         : com
+  28          * 输    出         : 无
+  29          *******************************************************************************/
+  30          
+  31          void LcdWriteCom(uchar com)       //写入命令
+  32          {
+  33   1        LCD1602_RS=0;
+  34   1                LCD1602_E=0;
+  35   1                LCD1602_DATAPINS =com;
+  36   1                Lcd1602_Delay1ms(5);
+  37   1                LCD1602_E=1;
+  38   1                Lcd1602_Delay1ms(5);
+  39   1                LCD1602_E=0;
+  40   1      }
+  41          
+  42          
+  43          /*******************************************************************************
+  44          * 函 数 名         : LcdWriteData
+  45          * 函数功能                 : 向LCD写入一个字节的数据
+  46          * 输    入         : dat
+  47          * 输    出         : 无
+  48          *******************************************************************************/                   
+  49                             
+  50          void LcdWriteData(uchar dat)                    //写入数据
+  51          {
+  52   1                       LCD1602_RS=1;
+  53   1                LCD1602_E=0;
+  54   1                LCD1602_DATAPINS =dat;
+  55   1                Lcd1602_Delay1ms(5);
+C51 COMPILER V9.01   LCD1602                                                               12/21/2016 19:08:32 PAGE 2   
+
+  56   1               LCD1602_E=1;
+  57   1                Lcd1602_Delay1ms(5);
+  58   1                LCD1602_E=0;
+  59   1      }
+  60          
+  61          /*******************************************************************************
+  62          * 函 数 名       : LcdInit()
+  63          * 函数功能               : 初始化LCD屏
+  64          * 输    入       : 无
+  65          * 输    出       : 无
+  66          *******************************************************************************/                   
+  67          void LcdInit()                                            //LCD初始化子程序
+  68          {
+  69   1              LcdWriteCom(0x38);  //开显示
+  70   1              LcdWriteCom(0x0c);  //开显示不显示光标
+  71   1              LcdWriteCom(0x06);  //写一个指针加1
+  72   1              LcdWriteCom(0x01);  //清屏
+  73   1              //LcdWriteCom(0x80);  //设置数据指针起点
+  74   1      }
+  75          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     78    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

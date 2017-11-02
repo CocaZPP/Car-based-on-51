@@ -1,0 +1,40 @@
+C51 COMPILER V9.01   TIMEDLY                                                               05/11/2017 09:53:24 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE TIMEDLY
+OBJECT MODULE PLACED IN timedly.OBJ
+COMPILER INVOKED BY: F:\¹¤¾ßÈí¼þ\KEIL\C51\BIN\C51.EXE timedly.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"Config.h"
+   3          #include"TimeDLY.h"
+   4          
+   5          void Delay1ms(INT16U c)   //Îó²î 0us
+   6          {
+   7   1          INT8U a,b;
+   8   1              for (; c>0; c--)
+   9   1              {
+  10   2                       for (b=199;b>0;b--)
+  11   2                       {
+  12   3                              for(a=1;a>0;a--);
+  13   3                       }      
+  14   2              }
+  15   1              
+  16   1      }
+  17          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     25    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

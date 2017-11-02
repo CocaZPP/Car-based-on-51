@@ -1,0 +1,266 @@
+C51 COMPILER V9.01   MAIN                                                                  12/21/2016 19:08:32 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: G:\KEIL\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "LCD1602.h"
+   2          #include "reg51.h"                       //此文件中定义了单片机的一些特殊功能寄存器
+   3          #include "math.h"
+   4          
+   5          uint line,ring;
+   6          uchar fen,miao,a,t,count; 
+   7          #define girth 0.204
+   8          sbit xian1=P1^1;
+   9          sbit xian2=P1^2;
+  10          
+  11          sbit ENA=P0^0;
+  12          sbit A1=P2^0; sbit A2=P2^1;
+  13          //////////
+  14          sbit ENB=P1^0;sbit B1=P2^2;
+  15          sbit B2=P2^3;
+  16          
+  17          //void delay (uint xms)
+  18          //
+  19          //{        uint i,j;
+  20          //for(i=xms;i>0;i--)
+  21          //          for(j=110;j>0;j--);
+  22          //}
+  23          ////正转
+  24          void forward1()
+  25          {               uchar i;
+  26   1      ENA=1;ENB=1;
+  27   1      
+  28   1        
+  29   1        
+  30   1                for(i=0;i<500;i++)
+  31   1                {
+  32   2                       A2=0;B2=0;
+  33   2                }
+  34   1        
+  35   1            for(i=0;i<100;i++)
+  36   1            {
+  37   2                  A1=1;B1=1;
+  38   2            }
+  39   1      }
+  40          
+  41          void forward2()
+  42          {        uchar i;
+  43   1       ENA=1;ENB=1;
+  44   1              
+  45   1        
+  46   1        
+  47   1                for(i=0;i<500;i++)
+  48   1                {
+  49   2                       A2=0;B2=0;
+  50   2                }
+  51   1        
+  52   1            for(i=0;i<100;i++)
+  53   1            {
+  54   2                  A1=1;B1=1;
+  55   2            }
+C51 COMPILER V9.01   MAIN                                                                  12/21/2016 19:08:32 PAGE 2   
+
+  56   1      }
+  57          ////反转
+  58          void later1()
+  59          {               uchar i;
+  60   1                      ENA=1;ENB=1;
+  61   1        
+  62   1                for(i=0;i<500;i++)
+  63   1                {
+  64   2                       A2=0;B2=0;
+  65   2                }
+  66   1        
+  67   1            for(i=0;i<100;i++)
+  68   1            {
+  69   2                  A1=1;B1=1;
+  70   2            }
+  71   1      }
+  72          void later2()
+  73          {               uchar i;
+  74   1                      ENA=1;ENB=1;
+  75   1        
+  76   1                for(i=0;i<500;i++)
+  77   1                {
+  78   2                       A2=0;B2=0;
+  79   2                }
+  80   1        
+  81   1            for(i=0;i<100;i++)
+  82   1            {
+  83   2                  A1=1;B1=1;
+  84   2            }
+  85   1      } 
+  86          ////快速停止
+  87          void braking()
+  88          {           ENA=1;
+  89   1                   A1=0;
+  90   1                       A2=0;
+  91   1      
+  92   1                       ENA=1;
+  93   1                   A1=0;
+  94   1                       A2=0;
+  95   1      }
+  96          
+  97          //检测黑线
+  98          void ce_heixian()
+  99          {
+ 100   1         if(xian1==0x00||xian2==0x00)
+ 101   1         line++;
+ 102   1      }
+ 103          //时间
+ 104          void Timer0Init()
+ 105          {
+ 106   1              TMOD|=0X01;//选择为定时器0模式，工作方式1，仅用TR0打开启动。
+ 107   1      
+ 108   1              TH0=0Xc78;      //给定时器赋初值，定时5ms
+ 109   1              TL0=0Xc78;      
+ 110   1      
+ 111   1              EA=1;//打开总中断
+ 112   1              TR0=1;//打开定时器                      
+ 113   1      }
+ 114          void Timer0() interrupt 1
+ 115          {
+ 116   1      
+ 117   1              TH0=0Xc78;      //给定时器赋初值，定时5ms
+C51 COMPILER V9.01   MAIN                                                                  12/21/2016 19:08:32 PAGE 3   
+
+ 118   1              TL0=0Xc78;
+ 119   1              t++;
+ 120   1              
+ 121   1              
+ 122   1      }
+ 123          void init()
+ 124          {               TMOD|=0X10;//选择为定时器1模式，工作方式1，仅用TR1打开启动。
+ 125   1      
+ 126   1              TH1=0X3cb0;     //给定时器赋初值，定时50ms
+ 127   1              TL1=0X3cb0;     
+ 128   1      
+ 129   1              EA=1;//打开总中断
+ 130   1              TR1=1;//打开定时器
+ 131   1              ET1=1;//打开定时器1中断允许     
+ 132   1      
+ 133   1      }
+ 134          void Timer1() interrupt 3
+ 135          {               TH1=0X3cb0;     //给定时器赋初值，定时50ms
+ 136   1                  TL1=0X3cb0;
+ 137   1                      count++;
+ 138   1                       if(count==20)  //1S
+ 139   1                       { count=0;
+ 140   2                         miao++;
+ 141   2                         if(miao==60)
+ 142   2                          { miao=0;
+ 143   3                                fen++;
+ 144   3                                 if(fen==60)
+ 145   3                                  { fen=0;
+ 146   4                                      }
+ 147   3                                       
+ 148   3                              }
+ 149   2                      
+ 150   2               }
+ 151   1                       
+ 152   1      }
+ 153          void write_sf(uchar add,uchar date)
+ 154          {
+ 155   1        uchar shi,ge;
+ 156   1        shi=date/10;
+ 157   1        ge=date%10;
+ 158   1         LcdWriteCom(0x80+add);
+ 159   1         LcdWriteData(0x30+shi);
+ 160   1         LcdWriteData(0x30+ge);
+ 161   1      }
+ 162          //距离
+ 163          void Int0Init()
+ 164          {
+ 165   1              //设置INT0
+ 166   1              IT0=1;//跳变沿出发方式（下降沿）
+ 167   1              EX0=1;//打开INT0的中断允许。    
+ 168   1              EA=1;//打开总中断       
+ 169   1      }
+ 170          void Int0()     interrupt 0             //外部中断0的中断函数
+ 171          {       ET1=1;//打开定时器1中断允许
+ 172   1          ring++;
+ 173   1      }
+ 174          void write_jl(uchar add,uchar date)
+ 175          {   uchar shi,ge;
+ 176   1         shi=date/10;
+ 177   1         ge=date%10;
+ 178   1         LcdWriteCom(0x80+add);
+ 179   1         LcdWriteData(0x30+shi);
+C51 COMPILER V9.01   MAIN                                                                  12/21/2016 19:08:32 PAGE 4   
+
+ 180   1         LcdWriteData(0x30+ge);
+ 181   1      }
+ 182          void chuli()
+ 183          {  
+ 184   1        a=ring*girth;
+ 185   1         
+ 186   1      
+ 187   1      }
+ 188          //黑线处理
+ 189          void dispose()
+ 190          {          if(line<=2)
+ 191   1              {forward1();}
+ 192   1                 else 
+ 193   1                   if(line==3)
+ 194   1                     {forward2();}
+ 195   1                         else 
+ 196   1                            if(line>3&&line<6)
+ 197   1                                { forward1(); }
+ 198   1                                else 
+ 199   1                                  if(line==6)
+ 200   1                                      { braking();
+ 201   2                                        ET0=1;//打开定时器0中断允许
+ 202   2                                        if(t==2000)
+ 203   2                                        {later1();}
+ 204   2                                      }
+ 205   1                                      else 
+ 206   1                                         if(line==9)
+ 207   1                                         {later2();}
+ 208   1                                         else 
+ 209   1                                           if(line>9&&line<12)
+ 210   1                                               {later1();}
+ 211   1                                               else 
+ 212   1                                                  {
+ 213   2                                                       braking();
+ 214   2                                                       write_sf(1,fen);
+ 215   2                                                       write_sf(3,miao);
+ 216   2                                                        chuli();
+ 217   2                                                       write_jl(5,a);
+ 218   2                                                      }
+ 219   1      }
+ 220          void main()
+ 221          {       Timer0Init();
+ 222   1              init();
+ 223   1              Int0Init();
+ 224   1              LcdInit();
+ 225   1              while(1)
+ 226   1              {       ce_heixian();
+ 227   2                 dispose();
+ 228   2              
+ 229   2              }
+ 230   1      
+ 231   1      }
+ 232          
+ 233          
+ 234          
+ 235          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    527    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.01   MAIN                                                                  12/21/2016 19:08:32 PAGE 5   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      9       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

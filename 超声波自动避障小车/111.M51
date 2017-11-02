@@ -1,0 +1,275 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        03/09/2017  19:35:05  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\工具软件\KEIL\C51\BIN\BL51.EXE main.obj TO 111
+
+
+MEMORY MODEL: SMALL WITH FLOATING POINT ARITHMETIC
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  F:\工具软件\KEIL\C51\LIB\C51FPS.LIB (?C?FPMUL)
+  F:\工具软件\KEIL\C51\LIB\C51FPS.LIB (?C?FCAST)
+  F:\工具软件\KEIL\C51\LIB\C51FPS.LIB (?C?CASTF)
+  F:\工具软件\KEIL\C51\LIB\C51FPS.LIB (?C?FPGETOPN)
+  F:\工具软件\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  F:\工具软件\KEIL\C51\LIB\C51S.LIB (?C?LNEG)
+  F:\工具软件\KEIL\C51\LIB\C51S.LIB (?C?ULCMP)
+  F:\工具软件\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  111 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000FH     UNIT         ?DT?MAIN
+            IDATA   0017H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0017H     UNIT         ?C_INITSEG
+                    001AH     0001H                  *** GAP ***
+            CODE    001BH     0003H     ABSOLUTE     
+            CODE    001EH     01E4H     UNIT         ?C?LIB_CODE
+            CODE    0202H     008CH     UNIT         ?C_C51STARTUP
+            CODE    028EH     003AH     UNIT         ?PR?UTC?MAIN
+            CODE    02C8H     002EH     UNIT         ?PR?CONUT?MAIN
+            CODE    02F6H     0022H     UNIT         ?PR?_MOTRUN?MAIN
+            CODE    0318H     001AH     UNIT         ?PR?_DELAYMS?MAIN
+            CODE    0332H     001AH     UNIT         ?PR?_LMOTRUN?MAIN
+            CODE    034CH     0012H     UNIT         ?PR?MAIN?MAIN
+            CODE    035EH     0009H     UNIT         ?PR?TIME1_IT?MAIN
+            CODE    0367H     0008H     UNIT         ?PR?STARTMODULE?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   111 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/09/2017  19:35:05  PAGE 2
+
+
+?PR?MAIN?MAIN
+  +--> ?PR?UTC?MAIN
+
+?PR?UTC?MAIN
+  +--> ?PR?STARTMODULE?MAIN
+  +--> ?PR?CONUT?MAIN
+  +--> ?PR?_DELAYMS?MAIN
+  +--> ?PR?_LMOTRUN?MAIN
+  +--> ?PR?_MOTRUN?MAIN
+
+
+
+UNRESOLVED EXTERNAL SYMBOLS:
+   DELAY21US
+
+
+
+SYMBOL TABLE OF MODULE:  111 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:0090H.1       PUBLIC        Echo
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  B:00A8H.7       PUBLIC        EA
+  C:02C8H         PUBLIC        Conut
+  B:0090H.0       PUBLIC        Trig
+  C:034CH         PUBLIC        main
+  D:0008H         PUBLIC        time
+  C:0332H         PUBLIC        _LMotRun
+  D:0089H         PUBLIC        TMOD
+  C:035EH         PUBLIC        Time1_IT
+  D:000AH         PUBLIC        ADD
+  B:00A8H.3       PUBLIC        ET1
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  B:00A0H.0       PUBLIC        LAN
+  B:00A0H.1       PUBLIC        LAP
+  B:00A0H.2       PUBLIC        RBN
+  B:00A0H.3       PUBLIC        RBP
+  C:02F6H         PUBLIC        _MotRun
+  C:028EH         PUBLIC        UTC
+  D:000BH         PUBLIC        m
+  D:000FH         PUBLIC        s
+  C:0318H         PUBLIC        _delayms
+  D:0013H         PUBLIC        t
+  C:0367H         PUBLIC        StartModule
+  -------         PROC          CONUT
+  C:02C8H         LINE#         42
+  C:02C8H         LINE#         43
+  C:02C8H         LINE#         44
+  C:02D8H         LINE#         46
+  C:02F5H         LINE#         47
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/09/2017  19:35:05  PAGE 3
+
+
+  -------         ENDPROC       CONUT
+  -------         PROC          STARTMODULE
+  C:0367H         LINE#         50
+  C:0367H         LINE#         51
+  C:0367H         LINE#         52
+  C:0369H         LINE#         53
+  C:036CH         LINE#         54
+  C:036EH         LINE#         55
+  -------         ENDPROC       STARTMODULE
+  -------         PROC          _DELAYMS
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0005H         SYMBOL        j
+  -------         ENDDO         
+  C:0318H         LINE#         57
+  C:0318H         LINE#         58
+  C:0318H         LINE#         59
+  C:031AH         LINE#         60
+  C:031EH         LINE#         61
+  C:031EH         LINE#         62
+  C:0322H         LINE#         63
+  C:0322H         LINE#         64
+  C:0324H         LINE#         65
+  C:032AH         LINE#         67
+  C:0331H         LINE#         68
+  -------         ENDPROC       _DELAYMS
+  -------         PROC          _MOTRUN
+  D:0007H         SYMBOL        speed
+  C:02F6H         LINE#         72
+  C:02F6H         LINE#         73
+  C:02F6H         LINE#         75
+  C:02FDH         LINE#         76
+  C:02FDH         LINE#         77
+  C:0300H         LINE#         78
+  C:0300H         LINE#         79
+  C:0306H         LINE#         80
+  C:0306H         LINE#         81
+  C:0308H         LINE#         82
+  C:030AH         LINE#         83
+  C:030CH         LINE#         84
+  C:030EH         LINE#         86
+  C:030FH         LINE#         88
+  C:030FH         LINE#         89
+  C:0311H         LINE#         90
+  C:0313H         LINE#         91
+  C:0315H         LINE#         92
+  C:0317H         LINE#         93
+  C:0317H         LINE#         94
+  -------         ENDPROC       _MOTRUN
+  -------         PROC          _LMOTRUN
+  D:0007H         SYMBOL        speed
+  C:0332H         LINE#         107
+  C:0332H         LINE#         108
+  C:0332H         LINE#         110
+  C:0339H         LINE#         111
+  C:0339H         LINE#         112
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/09/2017  19:35:05  PAGE 4
+
+
+  C:033CH         LINE#         113
+  C:033CH         LINE#         114
+  C:0342H         LINE#         115
+  C:0342H         LINE#         116
+  C:0344H         LINE#         117
+  C:0346H         LINE#         118
+  C:0347H         LINE#         120
+  C:0347H         LINE#         121
+  C:0349H         LINE#         122
+  C:034BH         LINE#         124
+  C:034BH         LINE#         125
+  -------         ENDPROC       _LMOTRUN
+  -------         PROC          UTC
+  C:028EH         LINE#         127
+  C:028EH         LINE#         128
+  C:028EH         LINE#         129
+  C:0291H         LINE#         130
+  C:0294H         LINE#         131
+  C:0296H         LINE#         132
+  C:0299H         LINE#         133
+  C:029BH         LINE#         134
+  C:029EH         LINE#         135
+  C:02A5H         LINE#         136
+  C:02B9H         LINE#         137
+  C:02B9H         LINE#         138
+  C:02BBH         LINE#         139
+  C:02C0H         LINE#         140
+  C:02C0H         LINE#         142
+  C:02C0H         LINE#         143
+  C:02C2H         LINE#         144
+  C:02C7H         LINE#         145
+  C:02C7H         LINE#         149
+  -------         ENDPROC       UTC
+  -------         PROC          MAIN
+  C:034CH         LINE#         152
+  C:034CH         LINE#         153
+  C:034CH         LINE#         155
+  C:034FH         LINE#         156
+  C:0352H         LINE#         157
+  C:0355H         LINE#         158
+  C:0357H         LINE#         159
+  C:0359H         LINE#         166
+  C:0359H         LINE#         167
+  C:0359H         LINE#         168
+  C:035CH         LINE#         169
+  -------         ENDPROC       MAIN
+  -------         PROC          TIME1_IT
+  C:035EH         LINE#         178
+  C:035EH         LINE#         180
+  C:0361H         LINE#         181
+  C:0364H         LINE#         182
+  C:0366H         LINE#         184
+  -------         ENDPROC       TIME1_IT
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?FPMUL
+  C:001EH         PUBLIC        ?C?FPMUL
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/09/2017  19:35:05  PAGE 5
+
+
+  -------         ENDMOD        ?C?FPMUL
+
+  -------         MODULE        ?C?FCAST
+  C:012EH         PUBLIC        ?C?FCASTC
+  C:0129H         PUBLIC        ?C?FCASTI
+  C:0124H         PUBLIC        ?C?FCASTL
+  -------         ENDMOD        ?C?FCAST
+
+  -------         MODULE        ?C?CASTF
+  C:0162H         PUBLIC        ?C?CASTF
+  -------         ENDMOD        ?C?CASTF
+
+  -------         MODULE        ?C?LNEG
+  C:01E3H         PUBLIC        ?C?LNEG
+  -------         ENDMOD        ?C?LNEG
+
+  -------         MODULE        ?C?ULCMP
+  C:01F1H         PUBLIC        ?C?ULCMP
+  -------         ENDMOD        ?C?ULCMP
+
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY21US
+    MODULE:  main.obj (MAIN)
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY21US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 036AH
+
+Program Size: data=24.0 xdata=0 code=878
+LINK/LOCATE RUN COMPLETE.  2 WARNING(S),  0 ERROR(S)

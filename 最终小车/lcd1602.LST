@@ -1,0 +1,81 @@
+C51 COMPILER V9.01   LCD1602                                                               05/11/2017 09:53:24 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LCD1602
+OBJECT MODULE PLACED IN lcd1602.OBJ
+COMPILER INVOKED BY: F:\工具软件\KEIL\C51\BIN\C51.EXE lcd1602.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"config.h"
+   3          #include"TimeDLY.h"
+   4          #include"IOCfg.c"
+   5          #include"LCD1602.h"
+   6          /*******************************************************************************
+   7          * 函 数 名         : LcdWriteCom
+   8          * 函数功能                 : 向LCD写入一个字节的命令
+   9          * 输    入         : com
+  10          * 输    出         : 无
+  11          *******************************************************************************/
+  12          
+  13          void LcdWriteCom(INT8U com)       //写入命令
+  14          {
+  15   1            LCD1602_RS=0;
+  16   1                LCD1602_E=0;
+  17   1                LCD1602_DATAPINS =com;
+  18   1                Delay1ms(5);
+  19   1                LCD1602_E=1;
+  20   1                Delay1ms(5);
+  21   1                LCD1602_E=0;
+  22   1      }
+  23          
+  24          
+  25          /*******************************************************************************
+  26          * 函 数 名         : LcdWriteData
+  27          * 函数功能                 : 向LCD写入一个字节的数据
+  28          * 输    入         : dat
+  29          * 输    出         : 无
+  30          *******************************************************************************/                   
+  31                             
+  32          void LcdWriteData(INT8U dat)                    //写入数据
+  33          {
+  34   1                LCD1602_RS=1;
+  35   1                LCD1602_E=0;
+  36   1                LCD1602_DATAPINS =dat;
+  37   1                Delay1ms(5);
+  38   1                LCD1602_E=1;
+  39   1                Delay1ms(5);
+  40   1                LCD1602_E=0;
+  41   1      }
+  42          
+  43          /*******************************************************************************
+  44          * 函 数 名       : LcdInit()
+  45          * 函数功能               : 初始化LCD屏
+  46          * 输    入       : 无
+  47          * 输    出       : 无
+  48          *******************************************************************************/                   
+  49          void LcdInit()                                            //LCD初始化子程序
+  50          {
+  51   1              LcdWriteCom(0x38);  //开显示
+  52   1              LcdWriteCom(0x0c);  //开显示不显示光标
+  53   1              LcdWriteCom(0x06);  //写一个指针加1
+  54   1              LcdWriteCom(0x01);  //清屏
+  55   1              //LcdWriteCom(0x80);  //设置数据指针起点
+C51 COMPILER V9.01   LCD1602                                                               05/11/2017 09:53:24 PAGE 2   
+
+  56   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     70    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

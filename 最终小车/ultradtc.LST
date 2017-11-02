@@ -1,0 +1,46 @@
+C51 COMPILER V9.01   ULTRADTC                                                              05/11/2017 09:53:24 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE ULTRADTC
+OBJECT MODULE PLACED IN ultradtc.OBJ
+COMPILER INVOKED BY: F:\工具软件\KEIL\C51\BIN\C51.EXE ultradtc.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"Config.h"
+   3          #include"IOCfg.c"
+   4          #include"TimeDLY.h"
+   5          #include"StepMot.h"
+   6          #include"ultradtc.h"
+   7          
+   8          //障碍物检测，并且避障前进函数：Ultra_DTC()
+   9          void  Ultra_DTC(void)
+  10          {
+  11   1              INT8U temp;
+  12   1              UltraDTC_TR = 1;   //发射超声波
+  13   1              if(UltraDTC_RE) temp=0x01;
+  14   1              else            temp=0x00;
+  15   1              switch(temp)
+  16   1                  {
+  17   2                      //避障：原地打转
+  18   2                      case 0x00:      LMotRun(LSPEED);     break;
+  19   2                      //无障碍：正常，前进
+  20   2                      case 0x01:  MotRun(HSPEED);break;
+  21   2                      default: break;
+  22   2                      }
+  23   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     36    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

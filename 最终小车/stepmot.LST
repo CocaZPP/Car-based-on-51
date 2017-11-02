@@ -1,0 +1,100 @@
+C51 COMPILER V9.01   STEPMOT                                                               05/11/2017 09:53:24 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE STEPMOT
+OBJECT MODULE PLACED IN stepmot.OBJ
+COMPILER INVOKED BY: F:\工具软件\KEIL\C51\BIN\C51.EXE stepmot.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"stepmot.h"
+   3          #include"config.h"
+   4          #include"TimeDLY.h"
+   5          #include"IOCfg.c"
+   6          INT8U ADD;
+   7          
+   8          /**左边电机**/
+   9          //以指定速度运行函数：MotRun()
+  10          void MotRun(INT16U speed)
+  11          {       
+*** WARNING C235 IN LINE 11 OF STEPMOT.C: parameter 1: different types
+  12   1           if(ADD>100)  //PWM周期为100*0.5ms
+  13   1              {
+  14   2                  ADD=0;      
+  15   2              }
+  16   1              if(ADD < speed)  
+  17   1              {
+  18   2                  LAN=0;
+  19   2                  LAP=1;
+  20   2                  RBN=0;
+  21   2                  RBP=1;
+  22   2      
+  23   2              }
+  24   1              else
+  25   1              {        
+  26   2                           LAN=0;
+  27   2                   LAP=0;
+  28   2                           RBN=0;
+  29   2                   RBP=0;
+  30   2                 
+  31   2              }
+  32   1      }
+  33          //停止电机函数：MotStop()
+  34          void MotStop(void)
+  35          {        
+  36   1      
+  37   1            LAN=0;
+  38   1                LAP=0;
+  39   1                RBN=0;
+  40   1                RBP=0;
+  41   1      
+  42   1      }
+  43          ///**左边电机**/
+  44          ////以指定速度运行函数：MotRun()
+  45          void LMotRun(INT16U speed)
+  46          {        
+*** WARNING C235 IN LINE 46 OF STEPMOT.C: parameter 1: different types
+  47   1        if(ADD>100)  //PWM周期为100*0.5ms
+  48   1              {
+  49   2                  ADD=0;     
+  50   2              }
+  51   1              if(ADD < speed)  
+  52   1              {
+  53   2                 LAN=0;
+C51 COMPILER V9.01   STEPMOT                                                               05/11/2017 09:53:24 PAGE 2   
+
+  54   2                 LAP=1;
+  55   2                  
+  56   2      
+  57   2              }
+  58   1              else
+  59   1              {        
+  60   2                         LAN=0;
+  61   2                    LAP=0;
+  62   2                 
+  63   2              }
+  64   1      }
+  65          ////停止电机函数：MotStop()
+  66          //void RMotStop(void)
+  67          //{      
+  68          //
+  69          //      RBN=0;
+  70          //        RBP=0;
+  71          //
+  72          //}
+  73                               
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     73    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

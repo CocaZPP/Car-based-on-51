@@ -1,0 +1,181 @@
+C51 COMPILER V9.01   MAIN                                                                  09/04/2017 21:35:44 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: F:\工具软件\KEIL\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include<intrins.h>     
+   3          #define uint unsigned int
+   4          #define uchar unsigned char
+   5          //uchar num=0,high=1,low=3;
+   6          sbit ENA=P2^0;
+   7          sbit A1=P2^1; sbit A2=P2^2;      
+   8          sbit A3=P2^3;    
+   9          //////////
+  10          //sbit ENB=P1^0;sbit B1=P2^6;
+  11          //sbit B2=P2^5;
+  12          //sbit jia_key=P3^1 ;sbit jian_key=P3^2;
+  13          //void delay (uint xms)
+  14          //
+  15          //{        uint i,j;                            ------
+  16          //for(i=xms;i>0;i--)
+  17          //          for(j=110;j>0;j--);
+  18          //}
+  19          ////正转
+  20          //void forward()
+  21          //{
+  22          //           ENA=1;
+  23          //           A1=1;
+  24          //               A2=0;
+  25          //
+  26          //               ENB=1;
+  27          //           B1=1;
+  28          //               B2=0;
+  29          //}
+  30          //////反转
+  31          //void later()
+  32          //{         ENA=1;
+  33          //           A1=0;
+  34          //               A2=1;
+  35          //
+  36          //               ENB=1;
+  37          //           B1=0;
+  38          //               B2=1;
+  39          //}
+  40          ////停止
+  41          //void stop()
+  42          //{
+  43          //    ENA=0; ENB=0;
+  44          //}
+  45          ////快速停止
+  46          //void braking()
+  47          //{         ENA=1;
+  48          //           A1=0;
+  49          //               A2=0;
+  50          //
+  51          //               ENA=1;
+  52          //           A1=0;
+  53          //               A2=0;
+  54          //
+  55          //}
+C51 COMPILER V9.01   MAIN                                                                  09/04/2017 21:35:44 PAGE 2   
+
+  56                  //按键控制
+  57          //void key()    //按键扫描子程序
+  58          //{   if(jia_key!=1)
+  59          //      {
+  60          //         delay(20);
+  61          //         if(jia_key!=1)
+  62          //         {
+  63          //          num++;
+  64          //              if(num==4)
+  65          //              num=3;
+  66          //              while(jia_key!=1);
+  67          //         }
+  68          //      }
+  69          //      if(jian_key!=1)
+  70          //      {
+  71          //              delay(20);
+  72          //              if(jian_key!=1)
+  73          //              {
+  74          //                if(num!=0)
+  75          //                num--;
+  76          //                else 
+  77          //                  num=0;
+  78          //                while(jian_key!=1);
+  79          //              
+  80          //                      
+  81          //              }
+  82          //      }        
+  83          //
+  84          //}
+  85          ////速度处理
+  86          //void dispose()
+  87          //{
+  88          //  switch(num)
+  89          //  {
+  90          //      case 0: high=1;
+  91          //             low=3; 
+  92          //                 break;
+  93          //    case 1:  high=2;
+  94          //             low=2; 
+  95          //                 break;
+  96          //
+  97          //    case 2:  high=3;
+  98          //             low=1; 
+  99          //                 break;
+ 100          //    case 3:  high=4;
+ 101          //             low=0; 
+ 102          //                 break;
+ 103          //  
+ 104          //  
+ 105          //  }
+ 106          //}
+ 107          ////电机驱动
+ 108          //void pwm()
+ 109          //{
+ 110          //  uchar i;
+ 111          //  if(low!=0)
+ 112          //  {
+ 113          //        for(i=0;i<low;i++)
+ 114          //        {
+ 115          //               A2=0;B2=0;
+ 116          //        }
+ 117          //  }
+C51 COMPILER V9.01   MAIN                                                                  09/04/2017 21:35:44 PAGE 3   
+
+ 118          //  for(i=0;i<high;i++)
+ 119          //  {
+ 120          //       A1=1;B1=1;
+ 121          //  }
+ 122          
+ 123          
+ 124                                       
+ 125          void main()
+ 126          {
+ 127   1               while(1)
+ 128   1               {       ENA=0;
+ 129   2                       A1=1;
+ 130   2                       A2=0;
+ 131   2                       A3=1;
+ 132   2      
+ 133   2      //               ENB=1;
+ 134   2      //           B1=1;
+ 135   2      //               B2=0;
+ 136   2               
+ 137   2               }
+ 138   1      //      { ENA=1;ENB=1;
+ 139   1      //              key();
+ 140   1      //              dispose();
+ 141   1      //              pwm();  
+ 142   1            
+ 143   1                
+ 144   1      
+ 145   1              
+ 146   1      }
+ 147          
+ 148          
+ 149          
+ 150           
+ 151          
+ 152          
+ 153          
+ 154          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     10    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
